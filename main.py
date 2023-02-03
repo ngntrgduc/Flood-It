@@ -1,10 +1,11 @@
 import pygame
 import random
-import time
 import math
 from color import *
 
-WIDTH = HEIGHT = 500
+WIDTH = HEIGHT = 500 # must <= 780
+number_of_cells = 10
+cell_length = WIDTH / number_of_cells
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -29,25 +30,27 @@ def flooded(board):
             return False
     return True
 
-def gen_board():
+def gen_board(number_of_cells):
     board = row = []
     color = DRACULA
-    for i in range(10):
-        row = [color[random.randint(0, 5)] for _ in range(10)]
+    for i in range(number_of_cells):
+        row = [color[random.randint(0, 5)] 
+               for _ in range(number_of_cells)]
         board.append(row)
     return board
 
 def draw_board(board):
-    for i in range(10):
-        for j in range(10):
-            cell = pygame.Rect(j*50, i*50, 50, 50)
+    for i in range(number_of_cells):
+        for j in range(number_of_cells):
+            cell = pygame.Rect(j*cell_length, i*cell_length, 
+                               cell_length, cell_length)
             pygame.draw.rect(screen, board[i][j], cell)
     
     pygame.display.update()
     pass
 
 def main():
-    board = gen_board()
+    board = gen_board(number_of_cells)
     run = True
     clock = pygame.time.Clock()
     while run:
@@ -56,27 +59,31 @@ def main():
         if event.type == pygame.QUIT:
             run = False
         if event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_x, mouse_y = pygame.mouse.get_pos()  
-            color_selected = board[math.floor(mouse_y/50)][math.floor(mouse_x/50)]
-            if (board[0][0] == color_selected):
-                continue
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            color_selected = board[
+                math.floor(mouse_y/cell_length)][
+                math.floor(mouse_x/cell_length)]
             flood_fill(board, 0, 0, board[0][0], color_selected)
         
         draw_board(board)
         if flooded(board):
-            replay_button = pygame.Rect(WIDTH/2 - 250/2, HEIGHT/2 - 100/2, 250, 100)
+            button_width, button_height = 250, 100
+            replay_button = pygame.Rect(WIDTH/2 - button_width/2, 
+                                        HEIGHT/2 - button_height/2, 
+                                        button_width, button_height)
             pygame.draw.rect(screen, (255, 255, 255), replay_button)
             font = pygame.font.SysFont('arial', 70)
             replay_text = font.render('REPLAY', True, (0, 0, 0))
-            size = pygame.font.Font.size(font, 'REPLAY')
-            screen.blit(replay_text, (WIDTH/2 - size[0]/2, HEIGHT/2 - size[1]/2))
+            text_width, text_height = pygame.font.Font.size(font, 'REPLAY')
+            screen.blit(replay_text, (WIDTH/2 - text_width/2, 
+                                      HEIGHT/2 - text_height/2))
             pygame.display.update()
 
             mouse_x, mouse_y = pygame.mouse.get_pos()
             event = pygame.event.wait()
             if (event.type == pygame.MOUSEBUTTONDOWN and
                 replay_button.collidepoint(mouse_x, mouse_y)):
-                board = gen_board()
+                board = gen_board(number_of_cells)
             if (event.type == pygame.MOUSEBUTTONDOWN and
                 not replay_button.collidepoint(mouse_x, mouse_y)):
                 run = False
