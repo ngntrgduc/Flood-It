@@ -10,7 +10,7 @@ The goal of this game is to fill the whole game board with the same color. Click
 
 - 10 x 10 board, 6 colors, Infinity Level (Randomly generated).
 - Simple yet addictive strategy game, and also a time killer. Chilling and relaxing.
-- Customize your theme at [color.py](https://github.com/ngntrgduc/Flood-It/blob/master/color.py).
+- Customize board size, number of cell and theme.
 
 ## How to play
 
@@ -23,8 +23,31 @@ git clone https://github.com/ngntrgduc/Flood-It.git
 pip install pygame
 ```
 3. Go to the folder you have just cloned/downloaded, and run:
-```
+```py
 py main.py
+```
+
+to play game with another board size:
+```py
+py main.py -s 780
+```
+
+and more cells:
+```py
+py main.py -s 780 -c 20
+```
+
+## Usage
+```
+$ python main.py -h
+usage: main.py [-h] [--size SIZE] [--cell CELL]
+
+Flood It game written in Python
+
+options:
+  -h, --help            show this help message and exit
+  --size SIZE, -s SIZE  Change board size
+  --cell CELL, -c CELL  Change number of cells of each row/column
 ```
 
 ## Screenshots
@@ -36,4 +59,4 @@ py main.py
 
 - [x] Add flexible board size, cells
 - [x] Add more theme
-- [ ] Add command-line arguments
+- [x] Add command-line arguments
