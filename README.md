@@ -8,9 +8,9 @@ The goal of this game is to fill the whole game board with the same color. Click
 
 ## Features
 
-- 10 x 10 board, 6 colors, Infinity Level (Randomly generated)
-- Simple yet addictive strategy game, and also a time killer. Chilling and relaxing
-- Customize your theme at [color.py](https://github.com/ngntrgduc/Flood-It/blob/master/color.py)
+- 10 x 10 board, 6 colors, Infinity Level (Randomly generated).
+- Simple yet addictive strategy game, and also a time killer. Chilling and relaxing.
+- Customize your theme at [color.py](https://github.com/ngntrgduc/Flood-It/blob/master/color.py).
 
 ## How to play
 
