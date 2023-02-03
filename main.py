@@ -2,9 +2,20 @@ import pygame
 import random
 import math
 from color import *
+import argparse
 
-WIDTH = HEIGHT = 500 # must <= 780
-number_of_cells = 10
+parser = argparse.ArgumentParser(
+    description = 'Flood It game written in Python')
+parser.add_argument('--size', '-s',
+                    type=int, default=500,
+                    help='Change board size')
+parser.add_argument('--cell', '-c',
+                    type=int, default=10,
+                    help='Change number of cells of each row/column')
+args = parser.parse_args()
+
+WIDTH = HEIGHT = args.size # must <= 780
+number_of_cells = args.cell
 cell_length = WIDTH / number_of_cells
 
 pygame.init()
