@@ -29,5 +29,6 @@ py main.py
 
 ## TODO(N'T)
 
-- [ ] Add flexible board size
+- [x] Add flexible board size, cells
 - [x] Add more theme
+- [ ] Add command-line arguments
