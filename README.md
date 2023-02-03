@@ -27,6 +27,11 @@ pip install pygame
 py main.py
 ```
 
+## Screenshots
+![image](https://user-images.githubusercontent.com/47920109/216643275-3da9226c-2305-4516-816f-f190dff4b1e7.png)
+![image](https://user-images.githubusercontent.com/47920109/216643516-fe08dc6d-de0d-450c-a116-ea069d949df3.png)
+
+
 ## TODO(N'T)
 
 - [x] Add flexible board size, cells
