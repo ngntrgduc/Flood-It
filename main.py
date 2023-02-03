@@ -12,8 +12,11 @@ pygame.display.set_caption('Flood-It')
 pygame.font.init()
 
 def flood_fill(board, i, j, prev_color, new_color):
-    if i >= 0 and i < len(board) and j >= 0 and j < len(board[0]) and board[i][j] != new_color and board[i][j] == prev_color:
+    if (i >= 0 and i < len(board) and 
+        j >= 0 and j < len(board[0]) and 
+        board[i][j] != new_color and board[i][j] == prev_color):
         board[i][j] = new_color
+    
         flood_fill(board, i - 1, j, prev_color, new_color)
         flood_fill(board, i + 1, j, prev_color, new_color)
         flood_fill(board, i, j - 1, prev_color, new_color)
@@ -28,7 +31,7 @@ def flooded(board):
 
 def gen_board():
     board = row = []
-    color = [RED, CYAN, GREEN, PURPLE, PINK, YELLOW]
+    color = DRACULA
     for i in range(10):
         row = [color[random.randint(0, 5)] for _ in range(10)]
         board.append(row)
@@ -46,8 +49,9 @@ def draw_board(board):
 def main():
     board = gen_board()
     run = True
-
+    clock = pygame.time.Clock()
     while run:
+        clock.tick(60)
         event = pygame.event.wait()
         if event.type == pygame.QUIT:
             run = False
